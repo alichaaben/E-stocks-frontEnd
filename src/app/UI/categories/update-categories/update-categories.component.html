@@ -1,0 +1,52 @@
+<div class="p-8 bg-white shadow-lg rounded-2xl border border-gray-200   dark:bg-[#222b45]  dark:border-gray-600">
+    <form [formGroup]="CategorieForm" (ngSubmit)="onSubmit()" class="space-y-7">
+        <h3 class="text-2xl font-semibold text-center py-3 bg-[#052659] text-white rounded-lg dark:bg-[#151a30]">
+            Modifier Categorie</h3>
+
+        <div class="grid gap-6 md:grid-cols-2">
+            <!-- Parti1 -->
+            <div class="space-y-4">
+                <div class="space-y-2">
+                    <label for="Ref" class="block text-sm font-medium  mb-2">Référence :</label>
+                    <input id="Ref" type="text" formControlName="Ref"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                        placeholder="Ref000101" />
+                    <div *ngIf="CategorieForm.get('Ref')?.touched && CategorieForm.get('Ref')?.invalid"
+                        class="text-sm text-red-600 mt-1">Référence requis.
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label for="desg" class="block text-sm font-medium  mb-2">Désignation :</label>
+                    <textarea formControlName="Desg" id="desg" placeholder="Désignation du produit"
+                        class="w-full p-2 h-32 resize-none border rounded-md  border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"></textarea>
+                    <div *ngIf="CategorieForm.get('Desg')?.touched && CategorieForm.get('Desg')?.invalid"
+                        class="text-sm text-red-600 mt-1">Désignation requis (min. 3 caractères).
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parti2 -->
+            <div class="space-y-4">
+                <div class="space-y-2">
+                    <label for="Rayonnage" class="block text-sm font-medium  mb-2">Rayonnage :</label>
+                    <input id="Rayonnage" type="text" formControlName="Rayonnage"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                        placeholder="   " />
+                    <div *ngIf="CategorieForm.get('Rayonnage')?.touched && CategorieForm.get('Rayonnage')?.invalid"
+                        class="text-sm text-red-600 mt-1">Rayonnage requis.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Buttons Section -->
+        <div class="flex flex-col md:flex-row justify-end gap-2">
+            <button
+                class="px-4 py-2  rounded-md bg-[#052659] hover:bg-[#3483E3]  text-white dark:bg-blue-800 dark:hover:bg-[#3483E3]">
+                Modifier</button>
+            <button type="reset"
+                class="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600">Annuler</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,16 @@
+/* You can add custom styles here if needed */
+:host {
+    display: block;
+}
+
+/* Smooth transitions for dark mode */
+table {
+    transition: background-color 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    nav {
+        @apply overflow-x-auto;
+    }
+}

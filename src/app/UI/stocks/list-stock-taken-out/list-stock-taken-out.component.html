@@ -1,0 +1,94 @@
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700">
+    
+    <!-- Header -->
+    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-white uppercase">Liste des sorties</h2>
+    </div>
+
+    <!-- Table Content -->
+    <div class="p-6">
+
+        <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead class="bg-[#052659] dark:bg-gray-700 text-gray-500 rounded-xl">
+                    <tr>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Numéro</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Date</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Référence</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Désignation</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Unité</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Catégorie</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Quantité</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Prix de vente</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Total</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                        <tr *ngFor="let stock of stocksSorties | paginate: { itemsPerPage: itemsPerPage, currentPage: p }"
+                        class="hover:bg-gray-50 dark:hover:bg-gray-700 text-center transition-colors duration-150">
+                        
+                        <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ stock.Ref}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ stock.Ref}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ stock.Designation }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ stock.Unite}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ stock.Categorie }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ stock.alerte}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ stock.StockInitial }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ stock.PrixUnitaire}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ stock.Total }}</td>
+                        <td class="p-3 flex gap-2 justify-center">
+                            <!-- <button routerLink="update" class="text-green-600 hover:bg-green-200 p-2 rounded-lg border dark:border-slate-600">
+                                <i class="ph ph-pencil-simple text-xl"></i>
+                            </button> -->
+                            <button class="text-red-700 hover:bg-red-200 p-2 rounded-lg border dark:border-slate-600">
+                                <i class="ph ph-trash text-xl"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-end space-x-2 p-4">
+            <!-- Items per page selector -->
+            <div class="mr-auto">
+                <select [(ngModel)]="itemsPerPage" (change)="changePageSize(itemsPerPage)" 
+                    class="border rounded-md px-3 py-1 text-sm dark:bg-gray-800 dark:border-gray-700 text-black dark:text-white">
+                    <option *ngFor="let size of pageSizes" [value]="size">{{ size }} per page</option>
+                </select>
+            </div>
+
+            <!-- Previous Button -->
+            <button
+                class="px-4 py-2 border rounded-full text-sm font-medium hover:bg-gray-50 dark:hover:bg-blue-800 dark:border-slate-600"
+                (click)="p = Math.max(1, p - 1)" [disabled]="p === 1">
+                Previous
+            </button>
+
+            <!-- Page Numbers (Visible on larger screens) -->
+            <div class="hidden md:flex items-center space-x-2">
+                <ng-container *ngFor="let page of getPages()">
+                    <button class="px-4 py-2 border rounded-full text-sm dark:border-slate-600"
+                        [ngClass]="{'bg-[#052659] dark:bg-blue-800 text-white': p === page, 'hover:bg-gray-50 dark:hover:bg-blue-800': p !== page}"
+                        (click)="p = page">
+                        {{ page }}
+                    </button>
+                </ng-container>
+            </div>
+
+            <!-- Ellipsis (Visible on smaller screens) -->
+            <div class="md:hidden px-4 py-2 text-sm">
+                {{ p }} of {{ totalPages }}
+            </div>
+
+            <!-- Next Button -->
+            <button
+                class="px-4 py-2 border rounded-full text-sm font-medium hover:bg-gray-50 dark:hover:bg-blue-800 dark:border-slate-600"
+                (click)="p = Math.min(totalPages, p + 1)" [disabled]="p === totalPages">
+                Next
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+
+npm install tailwindcss @tailwindcss/postcss postcss --force
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
+--------------------------
+npm install phosphor-icons ==> lil les icones
+"styles": [
+  "node_modules/phosphor-icons/src/css/icons.css",
+  "src/styles.css"
+]
+--------------------------
+npm install ngx-pagination ==> ==> lil les table 
+-------------------------
+npm install zod ==> lil login
+-------------------------
+ng add @angular/material (@angular/material@17.3.10) ==> lil les alert "dialog" kima start and stop ro-sys
+----------------------------------
+
+    background-color: #222b45
+
+    background-color: #151a30 ==> body
+
+--------------
+ dark:bg-gray-800  dark:border-gray-600
+dark:bg-[#222b45]
+-----------------------------------------
+sudo apt update && sudo apt upgrade -y
+
+sudo apt install git p7zip-full python3-wxgtk4.0
+
+git clone https://github.com/WoeUSB/WoeUSB-ng.git
+
+cd WoeUSB-ng
+
+sudo apt install build-essential devscripts equivs git p7zip-full python3-all python3-pip python3-setuptools python3-wheel python3-wxgtk4.0
+
+sudo python3 setup.py install
+
+emeddeb@crafteam.io
+
+

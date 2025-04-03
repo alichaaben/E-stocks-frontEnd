@@ -1,0 +1,72 @@
+<div class="p-8 bg-white shadow-lg rounded-2xl border border-gray-200   dark:bg-[#222b45]  dark:border-gray-600">
+    <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()" class="space-y-7">
+        <h3 class="text-2xl font-semibold text-center py-3 bg-[#052659] text-white rounded-lg dark:bg-[#151a30]">
+            Nouvelle Transactions</h3>
+
+        <div class="grid gap-6 md:grid-cols-2">
+            <!-- Parti1 -->
+            <div class="space-y-4">
+                <div class="space-y-2">
+                    <label for="date" class="block text-sm font-medium  mb-2">Date :</label>
+                    <input id="date" type="date" formControlName="date"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                        placeholder="mm/dd/yyyy" />
+                    <div *ngIf="transactionForm.get('date')?.touched && transactionForm.get('date')?.invalid"
+                        class="text-sm text-red-600 mt-1">Date  requis
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label for="categorie" class="block text-sm font-medium  mb-2">Catégorie :</label>
+                    <select id="categorie" formControlName="categorie"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600">
+                        <option value="" disabled selected>Choisissez un Catégorie</option>
+                        <option value="ROLE_Admin">Admin</option>
+                        <option value="ROLE_Manager">Manager</option>
+                        <option value="ROLE_Employer">Employer</option>
+                    </select>
+                    <div *ngIf="transactionForm.get('categorie')?.touched && transactionForm.get('categorie')?.invalid"
+                        class="text-sm text-red-600 mt-1">Catégorie requis.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parti2 -->
+            <div class="space-y-4">
+                <div class="space-y-2">
+                    <label for="type" class="block text-sm font-medium  mb-2">Type :</label>
+                    <select id="type" formControlName="type"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600">
+                        <option value="" disabled selected>Choisissez un Type</option>
+                        <option value="ROLE_Admin">Revenu</option>
+                        <option value="ROLE_Manager">Dépense</option>
+                        <option value="ROLE_Employer">Facture</option>
+                        <option value="ROLE_Employer">Crédit</option>
+                        <option value="ROLE_Employer">Epargne</option>
+                    </select>
+                    <div *ngIf="transactionForm.get('type')?.touched && transactionForm.get('type')?.invalid"
+                        class="text-sm text-red-600 mt-1">Type requis.
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label for="mont" class="block text-sm font-medium  mb-2">Montant :</label>
+                    <input id="mont" type="number" formControlName="mont"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                        placeholder="18500" />
+                    <div *ngIf="transactionForm.get('mont')?.touched && transactionForm.get('mont')?.invalid"
+                        class="text-sm text-red-600 mt-1">Montant requis.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Buttons Section -->
+        <div class="flex flex-col md:flex-row justify-end gap-2">
+            <button
+                class="px-4 py-2  rounded-md bg-[#052659] hover:bg-[#3483E3]  text-white dark:bg-blue-800 dark:hover:bg-[#3483E3]">
+                Ajouter</button>
+            <button type="reset"
+                class="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600">Annuler</button>
+        </div>
+    </form>
+</div>

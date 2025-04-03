@@ -1,0 +1,100 @@
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700 mx-[-2rem]">
+    
+    <!-- Header -->
+    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-white uppercase">Liste des Dettes</h2>
+    </div>
+
+    <!-- Table Content -->
+    <div class="p-6">
+
+
+        <div class="flex justify-end mb-5">
+            <button routerLink="create" class="bg-[#3483E3] hover:bg-[#052659] dark:bg-blue-800 dark:hover:bg-[#3483E3]  px-4 py-2 rounded-2xl flex items-center gap-2 font-medium text-white dark:text-gray-300  tracking-wider">
+                <i class="ph ph-plus-circle"></i> Ajouter Un Dette
+            </button>
+        </div>
+        <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead class="bg-[#052659] dark:bg-gray-700 text-gray-500 rounded-xl">
+                    <tr>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">N° Facture</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Date de facture</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Fournisseur</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Catégorie</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Délai de règlement</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Montant à payer</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Montant payé</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Soldes</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Échéance</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Retard</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Statut</th>
+                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                        <tr *ngFor="let dette of dettes | paginate: { itemsPerPage: itemsPerPage, currentPage: p }"
+                        class="hover:bg-gray-50 dark:hover:bg-gray-700 text-center transition-colors duration-150">
+                            <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ dette.numFact}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ dette.dateFact }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ dette.fournisseur}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ dette.categorie }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ dette.Dregle}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ dette.MontAPay }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ dette.MontPayee }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ dette.solde}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ dette.echeance }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ dette.retard}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ dette.statut }}</td>
+                            <td class="p-3 flex gap-2 justify-center">
+                                <button class="text-red-700 hover:bg-red-200 p-2 rounded-lg border dark:border-slate-600">
+                                    <i class="ph ph-trash text-xl"></i>
+                                </button>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-end space-x-2 p-4">
+            <!-- Items per page selector -->
+            <div class="mr-auto">
+                <select [(ngModel)]="itemsPerPage" (change)="changePageSize(itemsPerPage)" 
+                    class="border rounded-md px-3 py-1 text-sm dark:bg-gray-800 dark:border-gray-700 text-black dark:text-white">
+                    <option *ngFor="let size of pageSizes" [value]="size">{{ size }} per page</option>
+                </select>
+            </div>
+
+            <!-- Previous Button -->
+            <button
+                class="px-4 py-2 border rounded-full text-sm font-medium hover:bg-gray-50 dark:hover:bg-blue-800 dark:border-slate-600"
+                (click)="p = Math.max(1, p - 1)" [disabled]="p === 1">
+                Previous
+            </button>
+
+            <!-- Page Numbers (Visible on larger screens) -->
+            <div class="hidden md:flex items-center space-x-2">
+                <ng-container *ngFor="let page of getPages()">
+                    <button class="px-4 py-2 border rounded-full text-sm dark:border-slate-600"
+                        [ngClass]="{'bg-[#052659] dark:bg-blue-800 text-white': p === page, 'hover:bg-gray-50 dark:hover:bg-blue-800': p !== page}"
+                        (click)="p = page">
+                        {{ page }}
+                    </button>
+                </ng-container>
+            </div>
+
+            <!-- Ellipsis (Visible on smaller screens) -->
+            <div class="md:hidden px-4 py-2 text-sm">
+                {{ p }} of {{ totalPages }}
+            </div>
+
+            <!-- Next Button -->
+            <button
+                class="px-4 py-2 border rounded-full text-sm font-medium hover:bg-gray-50 dark:hover:bg-blue-800 dark:border-slate-600"
+                (click)="p = Math.min(totalPages, p + 1)" [disabled]="p === totalPages">
+                Next
+            </button>
+        </div>
+    </div>
+</div>

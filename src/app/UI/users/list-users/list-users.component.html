@@ -1,0 +1,135 @@
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <!-- Card 1: Total Users -->
+    <section class="bg-[#3483E3] text-white rounded-lg shadow-md p-6">
+        <div class="flex items-center justify-between">
+            <i class="ph ph-users text-lg"></i>
+            <i class="ph ph-arrow-up-right text-sm"></i>
+        </div>
+        <p class="mt-4 text-2xl font-bold">2,345</p>
+        <p class="text-sm opacity-80">Total Users</p>
+        <p class="mt-2 text-xs">
+            <span class="text-green-300">+12.5%</span> from last month
+        </p>
+    </section>
+
+    <!-- Card 2: Revenue -->
+    <section class="bg-[#c7e0ff] rounded-lg shadow-md p-6">
+        <div class="flex items-center justify-between">
+            <i class="ph ph-currency-dollar text-lg text-[#3483E3]"></i>
+            <i class="ph ph-arrow-up-right text-sm text-green-500"></i>
+        </div>
+        <p class="mt-4 text-2xl font-bold text-black">$12,623</p>
+        <p class="text-sm text-gray-500">Revenue</p>
+        <p class="mt-2 text-xs text-black">
+            <span class="text-green-500">+8.2%</span> from last month
+        </p>
+    </section>
+
+    <!-- Card 3: Active Sessions -->
+    <section class="bg-white rounded-lg shadow-md p-6">
+        <div class="flex items-center justify-between">
+            <i class="ph ph-chart-line-up text-lg text-[#3483E3]"></i>
+            <i class="ph ph-arrow-down-right text-sm text-red-500"></i>
+        </div>
+        <p class="mt-4 text-2xl font-bold text-black">1,482</p>
+        <p class="text-sm text-gray-500">Active Sessions</p>
+        <p class="mt-2 text-xs text-black">
+            <span class="text-red-500">-4.3%</span> from last month
+        </p>
+    </section>
+
+    <!-- Card 4: Conversion Rate -->
+    <section class="bg-[#052659] text-white rounded-lg shadow-md p-6">
+        <div class="flex items-center justify-between">
+            <i class="ph ph-currency-dollar text-lg"></i>
+            <i class="ph ph-arrow-up-right text-sm"></i>
+        </div>
+        <p class="mt-4 text-2xl font-bold">89.2%</p>
+        <p class="text-sm opacity-80">Conversion Rate</p>
+        <p class="mt-2 text-xs">
+            <span class="text-green-300">+2.1%</span> from last month
+        </p>
+    </section>
+</div>
+
+
+<!-- /*************tables*************/ -->
+<div class="bg-[white] shadow-md rounded-xl p-6 mx-auto w-full max-w-6xl mt-7 ml-1 overflow-hidden border border-gray-200 dark:bg-gray-800  dark:border-gray-700" style="max-width: 104rem;">
+    <h3 class="text-xl font-semibold text-gray-900 border-b dark:text-white dark:border-b-slate-600 pb-3 ">List of users</h3>
+
+    <div class="flex justify-end mt-4 mb-5">
+        <button routerLink="create" class="bg-[#3483E3] hover:bg-[#052659] dark:bg-blue-800 dark:hover:bg-[#3483E3] text-white px-4 py-2 rounded-2xl flex items-center gap-2 ">
+            <i class="ph ph-plus-circle"></i> Add User
+        </button>
+    </div>
+
+    <section id="content">
+        <main>
+            <div class="overflow-x-auto rounded-xl border border-gray-200 dark:border-slate-600">
+                <table class="w-full border-collapse  text-center text-[15px]">
+                    <thead class="bg-[#052659]  dark:bg-gray-700 text-gray-500 rounded-xl">
+                        <tr>
+                            <th class="px-6 py-3  text-xs font-medium text-white dark:text-gray-300 uppercase tracking-wider">Images</th>
+                            <th class="px-6 py-3  text-xs font-medium text-white dark:text-gray-300 uppercase tracking-wider">Nom complet</th>
+                            <th class="px-6 py-3  text-xs font-medium text-white dark:text-gray-300 uppercase tracking-wider">Email</th>
+                            <th class="px-6 py-3  text-xs font-medium text-white dark:text-gray-300 uppercase tracking-wider">Rôle</th>
+                            <th class="px-6 py-3  text-xs font-medium text-white dark:text-gray-300 uppercase tracking-wider">Téléphone</th>
+                            <th class="px-6 py-3  text-xs font-medium text-white dark:text-gray-300 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users | paginate: { itemsPerPage: itemsPerPage, currentPage: p }"
+                            class="hover:bg-gray-50 border-b dark:hover:bg-gray-700 dark:border-b-slate-600">
+                            <td class="p-3 flex justify-center">
+                                <img [src]="user.image" alt="user" class="w-12 h-12 rounded-full object-cover">
+                            </td>
+                            <td class="p-3">{{ user.name }}</td>
+                            <td class="p-3">{{ user.email }}</td>
+                            <td class="p-3">{{ user.role }}</td>
+                            <td class="p-3">{{ user.phone }}</td>
+                            <td class="p-3 flex gap-2 justify-center">
+                                <button routerLink="update" class="text-green-600 hover:bg-green-200 p-2 rounded-lg border dark:border-slate-600">
+                                    <i class="ph ph-pencil-simple text-xl"></i>
+                                </button>
+                                <button class="text-red-700 hover:bg-red-200 p-2 rounded-lg border dark:border-slate-600">
+                                    <i class="ph ph-trash text-xl"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex items-center justify-end space-x-2 p-4">
+                <!-- Previous Button -->
+                <button class="px-4 py-2 border rounded-full text-sm font-medium hover:bg-gray-50 dark:hover:bg-blue-800 dark:border-slate-600"
+                    (click)="p = Math.max(1, p - 1)" [disabled]="p === 1">
+                    Previous
+                </button>
+
+                <!-- Page Numbers (Visible on larger screens) -->
+                <div class="hidden md:flex items-center space-x-2">
+                    <ng-container *ngFor="let page of getPages()">
+                        <button class="px-4 py-2 border rounded-full text-sm dark:border-slate-600"
+                            [ngClass]="{'bg-[#052659] dark:bg-blue-800 text-white ': p === page, 'hover:bg-gray-50 dark:hover:bg-blue-800': p !== page}"
+                            (click)="p = page">
+                            {{ page }}
+                        </button>
+                    </ng-container>
+                </div>
+
+                <!-- Ellipsis (Visible on smaller screens) -->
+                <div class="md:hidden px-4 py-2 text-sm">
+                    {{ p }} of {{ totalPages }}
+                </div>
+
+                <!-- Next Button -->
+                <button class="px-4 py-2 border rounded-full text-sm font-medium hover:bg-gray-50 dark:hover:bg-blue-800 dark:border-slate-600"
+                    (click)="p = Math.min(totalPages, p + 1)" [disabled]="p === totalPages">
+                    Next
+                </button>
+            </div>
+        </main>
+    </section>
+</div>

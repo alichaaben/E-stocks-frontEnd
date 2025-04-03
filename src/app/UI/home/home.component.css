@@ -1,0 +1,42 @@
+/* inventory-management.component.css */
+/* Optional custom styles */
+.container {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+/* Animation for the photo */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .flex.justify-center.w-full {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .w-1\/3,
+    .w-2\/3 {
+        width: 100%;
+    }
+
+    .w-1\/3 {
+        margin-bottom: 2rem;
+        justify-content: center !important;
+    }
+}

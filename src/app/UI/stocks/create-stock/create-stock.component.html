@@ -1,0 +1,169 @@
+<div class="p-8 bg-white shadow-lg rounded-2xl border border-gray-200   dark:bg-[#222b45]  dark:border-gray-600">
+    <h3 class="text-2xl font-semibold text-center py-3 bg-[#052659] text-white rounded-lg dark:bg-[#151a30] mb-6">
+        Nouvelle Produit</h3>
+    <form [formGroup]="marchandiseForm" (ngSubmit)="onSubmit()" class="space-y-7">
+
+        <div class="grid gap-6 lg:grid-cols-[300px,1fr]">
+            <!-- Left Side: Preview Card -->
+            <div class="space-y-6">
+                <div class="rounded-lg border bg-white  dark:bg-[#222b45]  dark:border-gray-600 p-4">
+                    <div *ngIf="previewImage; else emptyPreview">
+                        <div class="relative aspect-square">
+                            <img [src]="previewImage" alt="Product preview" class="rounded-lg object-cover" />
+                            <button (click)="clearPreviewImage()"
+                                class="absolute right-2 top-2 rounded-full bg-white p-1 shadow-sm">
+                                <span class="text-gray-600">✕</span>
+                            </button>
+                        </div>
+                    </div>
+                    <ng-template #emptyPreview>
+                        <div class="aspect-square rounded-lg border-2 border-dashed">
+                            <img src="assets/Imageupload.png" alt="Product preview" class="rounded-lg object-cover" />
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+
+            <!-- Right Side: Form Sections -->
+            <div class="space-y-6">
+                <!-- Image Upload Section -->
+                <div class="rounded-lg border bg-white dark:bg-[#222b45]  dark:border-gray-600 p-4">
+                    <h3 class="mb-4 text-sm font-medium">Ajouter une photo du produit : </h3>
+                    <!-- Wrap the entire section with a label -->
+                    <label for="file-upload" class="cursor-pointer">
+                        <div class="flex items-center justify-center rounded-lg border-2 border-dashed p-8">
+                            <div class="text-center">
+                                <i class="ph ph-cloud-arrow-up text-gray-400 text-4xl"></i>
+                                <div class="mt-4">
+                                    <span class="text-sm text-gray-600">
+                                        Déposez vos images ici, ou <span class="text-orange-500">cliquez pour
+                                            parcourir</span>
+                                    </span>
+                                </div>
+                                <p class="mt-1 text-xs text-gray-500">
+                                    max 5 1200 x 1200 recommandé, les fichiers PNG, JPG et GIF sont autorisés
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Hidden file input -->
+                        <input id="file-upload" type="file" class="hidden" accept="image/*"
+                            (change)="handleImageUpload($event)" />
+                    </label>
+                </div>
+
+                <!-- Product Information Section -->
+                <div class="rounded-lg border bg-white dark:bg-[#222b45]  dark:border-gray-600 p-4">
+                    <h3 class="mb-4 text-sm font-medium">Informations sur le produit:</h3>
+                    <div class="grid gap-4">
+                        <div class="grid gap-2">
+                            <label for="Ref" class="block text-sm font-medium  mb-2">Référence :</label>
+                            <input id="Ref" type="text" formControlName="Ref"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                                placeholder="Ref000101" />
+                            <div *ngIf="marchandiseForm.get('Ref')?.touched && marchandiseForm.get('Ref')?.invalid"
+                                class="text-sm text-red-600 mt-1">Référence requis (min. 3 caractères).
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="grid gap-2">
+                                <label for="desg" class="block text-sm font-medium  mb-2">Désignation :</label>
+                                <input id="desg" type="text" formControlName="Desg"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                                    placeholder="Désignation" />
+                                <div *ngIf="marchandiseForm.get('Desg')?.touched && marchandiseForm.get('Desg')?.invalid"
+                                    class="text-sm text-red-600 mt-1">Désignation requis (min. 3 caractères).
+                                </div>
+                            </div>
+                            <div class="grid gap-2">
+                                <label for="unite" class="block text-sm font-medium  mb-2">Unité :</label>
+                                <input id="unite" type="text" formControlName="unit"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                                    placeholder="Unité" />
+                                <div *ngIf="marchandiseForm.get('unit')?.touched && marchandiseForm.get('unit')?.invalid"
+                                    class="text-sm text-red-600 mt-1">Unité requis
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid gap-2">
+                            <label for="Categorie" class="block text-sm font-medium  mb-2">Catégorie :</label>
+                            <select id="Categorie" formControlName="Categorie"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600">
+                                <option value="" disabled selected>Choisissez un Catégorie</option>
+                                <option value="ROLE_Admin">Admin</option>
+                                <option value="ROLE_Manager">Manager</option>
+                                <option value="ROLE_Employer">Employer</option>
+                            </select>
+                            <div *ngIf="marchandiseForm.get('Categorie')?.touched && marchandiseForm.get('Categorie')?.invalid"
+                                class="text-sm text-red-600 mt-1">Catégorie requis.
+                            </div>
+
+                        </div>
+                        <div class="grid gap-2">
+                            <label for="alert" class="block text-sm font-medium  mb-2">Seuil d'alerte :</label>
+                            <input id="alert" type="number" formControlName="alerte"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                                placeholder="0" />
+                            <div *ngIf="marchandiseForm.get('alerte')?.touched && marchandiseForm.get('alerte')?.invalid"
+                                class="text-sm text-red-600 mt-1">Seuil d'alerte requis
+                            </div>
+                        </div>
+                        <div class="grid gap-2">
+                            <label for="Sunite" class="block text-sm font-medium  mb-2">Stock initial :</label>
+                            <input id="Sunite" type="number" formControlName="stockUni"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                                placeholder="0" />
+                            <div *ngIf="marchandiseForm.get('stockUni')?.touched && marchandiseForm.get('stockUni')?.invalid"
+                                class="text-sm text-red-600 mt-1">Stock initial requis
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Details Section -->
+                <div class="rounded-lg border bg-white dark:bg-[#222b45]  dark:border-gray-600 p-4">
+                    <h3 class="mb-4 text-sm font-medium">Détails des prix :</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label for="PU" class="block text-sm font-medium  mb-2">Prix unitaire :</label>
+                            <div class="relative flex rounded-md">
+                                <span
+                                    class="flex items-center justify-center rounded-l-md border border-r-0 bg-gray-100 px-3  dark:bg-gray-800 dark:border-gray-600">DTN</span>
+                                <input id="PU" type="number" formControlName="PrixUni"
+                                    class="pl-6 rounded-l-none w-full p-2 border rounded-md  border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                                    placeholder="000" />
+                            </div>
+                            <div *ngIf="marchandiseForm.get('PrixUni')?.touched && marchandiseForm.get('PrixUni')?.invalid"
+                                class="text-sm text-red-600 mt-1">Prix unitaire requis
+                            </div>
+                        </div>
+
+
+                        <div class="space-y-2">
+                            <label for="Total" class="block text-sm font-medium  mb-2">Total :</label>
+                            <div class="relative flex rounded-md">
+                                <span
+                                    class="flex items-center justify-center rounded-l-md border border-r-0 bg-gray-100 px-3  dark:bg-gray-800 dark:border-gray-600">DTN</span>
+                                <input id="Total" type="number" formControlName="total"
+                                    class="pl-6 rounded-l-none w-full p-2 border rounded-md  border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                                    placeholder="000" />
+                            </div>
+                            <div *ngIf="marchandiseForm.get('total')?.touched && marchandiseForm.get('total')?.invalid"
+                                class="text-sm text-red-600 mt-1">total requis
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Buttons Section -->
+        <div class="flex flex-col md:flex-row justify-end gap-2">
+            <button
+                class="px-4 py-2  rounded-md bg-[#052659] hover:bg-[#3483E3]  text-white dark:bg-blue-800 dark:hover:bg-[#3483E3]">
+                Ajouter</button>
+            <button type="reset"
+                class="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600">Annuler</button>
+        </div>
+    </form>
+</div>

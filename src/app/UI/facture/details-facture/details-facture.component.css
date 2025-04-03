@@ -1,0 +1,34 @@
+table {
+    border: 1px solid #e5e7eb;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+/* Add any custom styles here */
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.bg-\[\#E5F9F6\] {
+    background-color: #e5f9f6;
+}
+
+.bg-\[\#00D1B2\] {
+    background-color: #00d1b2;
+}
+
+.text-\[\#00D1B2\] {
+    color: #00d1b2;
+}
+
+.bg-green-500 {
+    background-color: #22c55e;
+}
+
+.text-red-500 {
+    color: #ef4444;
+}

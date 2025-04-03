@@ -1,0 +1,66 @@
+<!-- <div
+class="w-24 h-24 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
+<i class="ph ph-package text-6xl text-white"></i>
+</div> -->
+
+
+<!-- inventory-management.component.html -->
+<div class="min-h-screen w-full bg-fixed bg-cover bg-center"
+    style="background-image: url('assets/crm-gestion-stocks.jpg')">
+    <div class="backdrop-blur-sm bg-black/30 min-h-screen w-full">
+        <div class="container mx-auto px-4 py-8 min-h-screen flex items-center justify-center relative">
+
+            <!-- Logout Button -->
+            <button
+                class="absolute top-4 right-4 flex items-center space-x-2 bg-white/90 hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full shadow-md transition-all duration-200 ease-in-out border border-gray-200 z-50">
+                <i class="ph ph-sign-out w-5 h-5"></i>
+                <span class="text-sm font-medium">Logout</span>
+            </button>
+
+            <div class="flex items-center justify-center w-full gap-12 backdrop-blur-xs">
+                <!-- Left Content Area -->
+                <div class="w-1/3 flex justify-end">
+                    <div class="bg-white/80 p-8 rounded-xl shadow-2xl max-w-md">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Contrôle des stocks</h2>
+                        <p class="text-gray-600 mb-6">Gérez vos niveaux de stock, suivez les mouvements d’inventaire et
+                            optimisez
+                            votre chaîne d’approvisionnement grâce à notre système de gestion complet.</p>
+                        <div class="flex items-center">
+                            <i class="lucide lucide-bar-chart-2 text-blue-500 w-6 h-6 mr-2"></i>
+                            <span class="text-sm text-gray-600">Dashboard analytique en temps réel</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Orbital Menu -->
+                <div class="relative w-2/3 h-[700px] flex items-center justify-center">
+                    <!-- Central Hub -->
+                    <a routerLink="/dashboard"
+                        class="absolute z-20 bg-white/100 p-2 rounded-lg shadow-xl hover:scale-105 transition-transform">
+                        <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
+                            <i class="ph ph-storefront text-6xl text-white"></i>
+                            <!-- <img src="assets/magasin.png" alt="icon-home" /> -->
+                        </div>
+                    </a>
+
+                    <!-- Dotted Circles -->
+                    <div class="absolute w-[400px] h-[400px] rounded-full border-2 border-dashed border-white/50"></div>
+                    <div class="absolute w-[600px] h-[600px] rounded-full border-2 border-dashed border-white/30"></div>
+
+                    <!-- Orbital Buttons -->
+                    <div *ngFor="let button of buttons"
+                        class="absolute flex flex-col items-center justify-center transition-all duration-100 ease-linear"
+                        [style.transform]="'translate(' + calculatePosition(button.radius, button.angleOffset).x + 'px, ' + calculatePosition(button.radius, button.angleOffset).y + 'px)'"
+                        style="z-index: 15;">
+                        <a [routerLink]="button.path"
+                            [class]="' rounded-full ' + button.size + ' flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white backdrop-blur-none hover:scale-110'">
+                            <!-- <i [class]="button.icon + ' text-6xl text-white'"></i> -->
+                            <img [src]="button.icon" alt="icon-home" />
+                        </a>
+                        <span
+                            class="mt-2 text-sm font-medium bg-white/90 px-3 py-1 rounded-full shadow-md">{{button.label}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

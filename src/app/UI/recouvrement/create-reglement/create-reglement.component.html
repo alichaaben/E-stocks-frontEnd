@@ -1,0 +1,98 @@
+<div class="p-8 bg-white shadow-lg rounded-2xl border border-gray-200   dark:bg-[#222b45]  dark:border-gray-600">
+    <form [formGroup]="reglementForm" (ngSubmit)="onSubmit()" class="space-y-7">
+        <h3 class="text-2xl font-semibold text-center py-3 bg-[#052659] text-white rounded-lg dark:bg-[#151a30]">
+            Nouvelle Réglement</h3>
+
+        <div class="grid gap-6 md:grid-cols-2">
+            <!-- Parti1 -->
+            <div class="space-y-4">
+                <div class="space-y-2">
+                    <label for="numFact" class="block text-sm font-medium  mb-2">N° Facture :</label>
+                    <input id="numFact" type="text" formControlName="numFact"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                        placeholder="FAC-2024-001" />
+                    <div *ngIf="reglementForm.get('numFact')?.touched && reglementForm.get('numFact')?.invalid"
+                        class="text-sm text-red-600 mt-1">N° Facture requis
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label for="client" class="block text-sm font-medium  mb-2">Client :</label>
+                    <input id="client" type="text" formControlName="client"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                        placeholder="client" />
+                    <div *ngIf="reglementForm.get('client')?.touched && reglementForm.get('client')?.invalid"
+                        class="text-sm text-red-600 mt-1">Client requis
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label for="solde" class="block text-sm font-medium  mb-2">Solde :</label>
+                    <input id="solde" type="number" formControlName="solde"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                        placeholder="0" />
+                    <div *ngIf="reglementForm.get('solde')?.touched && reglementForm.get('solde')?.invalid"
+                        class="text-sm text-red-600 mt-1">Solde requis.
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label for="retard" class="block text-sm font-medium  mb-2">Retard (jours) :</label>
+                    <input id="retard" type="text" formControlName="retard"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                        placeholder="retard (jours)" />
+                    <div *ngIf="reglementForm.get('retard')?.touched && reglementForm.get('retard')?.invalid"
+                        class="text-sm text-red-600 mt-1">retard par jours requis
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parti2 -->
+            <div class="space-y-4">
+                <div class="space-y-2">
+                    <label for="date" class="block text-sm font-medium  mb-2">Date d'encaissement :</label>
+                    <input id="date" type="date" formControlName="date"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                        placeholder="mm/dd/yyyy" />
+                    <div *ngIf="reglementForm.get('date')?.touched && reglementForm.get('date')?.invalid"
+                        class="text-sm text-red-600 mt-1">Date d'encaissement requis
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label for="Sunite" class="block text-sm font-medium  mb-2">Réference :</label>
+                    <input id="ref" type="text" formControlName="ref"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                        placeholder="REG-001" />
+                    <div *ngIf="reglementForm.get('ref')?.touched && reglementForm.get('ref')?.invalid"
+                        class="text-sm text-red-600 mt-1">Réference requis
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label for="montEnCaiss" class="block text-sm font-medium  mb-2">Montant encaissé :</label>
+                    <input id="montEnCaiss" type="number" formControlName="montEnCaiss"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                        placeholder="500" />
+                    <div *ngIf="reglementForm.get('montEnCaiss')?.touched && reglementForm.get('montEnCaiss')?.invalid"
+                        class="text-sm text-red-600 mt-1">Montant encaissé requis.
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label for="montPay" class="block text-sm font-medium  mb-2">Montant de paiement :</label>
+                    <input id="montPay" type="number" formControlName="montPay"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                    placeholder="500" />
+                    <div *ngIf="reglementForm.get('montPay')?.touched && reglementForm.get('montPay')?.invalid"
+                        class="text-sm text-red-600 mt-1">Montant de paiement requis.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Buttons Section -->
+        <div class="flex flex-col md:flex-row justify-end gap-2">
+            <button
+                class="px-4 py-2  rounded-md bg-[#052659] hover:bg-[#3483E3]  text-white dark:bg-blue-800 dark:hover:bg-[#3483E3]">
+                Ajouter</button>
+            <button type="reset"
+                class="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600">Annuler</button>
+        </div>
+    </form>
+</div>

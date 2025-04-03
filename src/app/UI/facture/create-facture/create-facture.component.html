@@ -1,0 +1,199 @@
+<div class="p-4 md:p-8 bg-white shadow-lg rounded-2xl border border-gray-200 dark:bg-[#222b45] dark:border-gray-600">
+    <!-- Header -->
+    <h3 class="text-xl md:text-2xl font-semibold text-center py-3 bg-[#052659] text-white rounded-lg dark:bg-[#151a30]">
+        {{selectedInvoiceType || 'Facturation'}}</h3>
+    <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+        <div class="space-y-6 p-4 md:p-6">
+            <!-- Grid for Sender Information and Invoice Details -->
+            <div class="grid gap-6 md:grid-cols-2">
+                <!-- Sender Information -->
+                <div class="space-y-6">
+                    <div class="flex justify-center md:justify-start">
+                        <div class="border border-dashed border-gray-300 bg-slate-700 p-2 rounded-xl dark:bg-gray-800">
+                            <span class="text-white italic text-6xl">{{selectedInvoiceType || 'Sélectionnez un type'}}</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="font-extrabold"><b><u>Type De Facture :</u></b></h3>
+                        <div class="space-y-2">
+                            <select id="tyepF" formControlName="tyepF"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600">
+                                <option value="" disabled selected>Choisissez un type de Facture</option>
+                                <option value="devis">Devis</option>
+                                <option value="commande">Commande</option>
+                                <option value="livrision">Livrision</option>
+                                <option value="facture">Facture</option>
+                            </select>
+                            <div *ngIf="invoiceForm.get('tyepF')?.touched && invoiceForm.get('tyepF')?.invalid"
+                                class="text-sm text-red-600 mt-1">type de facture requis.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Invoice Details -->
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <label for="issue-date">Date :</label>
+                        <input type="date" id="issue-date" placeholder="dd-mm-yyyy"
+                            class="w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600" />
+                    </div>
+                    <div class="space-y-2">
+                        <label for="invoice-number">N° :</label>
+                        <input id="invoice-number" placeholder="#INV-07582677/90"
+                            class="w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600" />
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+            <hr />
+            <!-- Grid for Issue From and Issue For -->
+            <div class="grid gap-6 md:grid-cols-2">
+                <!-- Issue From -->
+                <div class="space-y-4">
+                    <h3 class="font-semibold"><b><u>Émis par :</u></b></h3>
+                    <div class="space-y-2">
+                        <label for="NomEpt">Nom de l'entreprise :</label>
+                        <input id="NomEpt" placeholder="Nom de l'entreprise fournissant"
+                            class="w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600" />
+                    </div>
+                    <div class="space-y-2">
+                        <label for="address">Enter address :</label>
+                        <textarea id="address" placeholder="address"
+                            class="w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"></textarea>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="phone">Numéro :</label>
+                        <input id="phone" placeholder="+216 *** *** ***"
+                            class="w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600" />
+                    </div>
+                </div>
+
+                <!-- Issue For -->
+                <div class="space-y-4">
+                    <h3 class="font-semibold"><b><u>Émis pour :</u></b></h3>
+                    <div class="space-y-2">
+                        <label for="recipient-name">Nom de l'entreprise :</label>
+                        <input id="recipient-name" placeholder="Nom de l'entreprisee bénéficiaire"
+                            class="w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600" />
+                    </div>
+                    <div class="space-y-2">
+                        <label for="recipient-address">Enter address :</label>
+                        <textarea id="recipient-address" placeholder="address"
+                            class="w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"></textarea>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="recipient-phone">Numéro :</label>
+                        <input id="recipient-phone" placeholder="+216 *** *** ***"
+                            class="w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600" />
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+
+            <!-- Product List -->
+            <div class="border rounded-lg p-4 md:p-6 bg-[#c7e0ff] dark:bg-gray-800 dark:border-gray-600">
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                        <div class="col-span-12 md:col-span-1"></div>
+                        <div class="col-span-12 md:col-span-3">
+                            <label>Référence :</label>
+                        </div>
+                        <div class="col-span-12 md:col-span-2">
+                            <label>Prix :</label>
+                        </div>
+                        <div class="col-span-12 md:col-span-2">
+                            <label>Quantiter :</label>
+                        </div>
+                        <div class="col-span-12 md:col-span-2">
+                            <label>Total :</label>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Product Rows -->
+                    <div *ngFor="let product of products; let i = index" class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                        <!-- Delete Button -->
+                        <div class="col-span-12 md:col-span-1 flex justify-end md:justify-start">
+                            <button (click)="deleteProduct(i)" class="text-red-500 hover:text-red-700" [disabled]="products.length <= 1">
+                                <i class="ph ph-trash text-xl"></i>
+                            </button>
+                        </div>
+
+                        <!-- Product Details -->
+                        <div class="col-span-12 md:col-span-3 space-y-2">
+                            <input placeholder="Référence: REF***"
+                                class="w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600" />
+                            <input placeholder="Désignation"
+                                class="w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600" />
+                        </div>
+                        <div class="col-span-12 md:col-span-2">
+                            <div class="relative flex rounded-md">
+                                <span class="flex items-center justify-center rounded-l-md border border-r-0 bg-gray-100 px-3 dark:bg-gray-800 dark:border-gray-600">$</span>
+                                <input type="number" class="pl-6 rounded-l-none w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                                    placeholder="00.00" />
+                            </div>
+                        </div>
+                        <div class="col-span-12 md:col-span-2">
+                            <input type="number" min="1" value="1"
+                                class="w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600" />
+                        </div>
+                        <div class="col-span-12 md:col-span-2">
+                            <div class="relative flex rounded-md">
+                                <span class="flex items-center justify-center rounded-l-md border border-r-0 bg-gray-100 px-3 dark:bg-gray-800 dark:border-gray-600">$</span>
+                                <input type="number" class="pl-6 rounded-l-none w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                                    placeholder="00.00" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Product Button -->
+                    <div class="flex justify-end gap-2">
+                        <button (click)="addProduct()"
+                            class="bg-[#052659] hover:bg-[#3483E3] text-white px-4 py-2 rounded-md">
+                            <i class="ph ph-plus-circle"></i> Plus
+                        </button>
+                    </div>
+
+                    <!-- Totals Section -->
+                    <div class="space-y-2">
+                        <div class="flex justify-end gap-4">
+                            <label class="w-24">Total HT :</label>
+                            <div class="relative flex rounded-md w-[200px]">
+                                <span class="flex items-center justify-center rounded-l-md border border-r-0 bg-gray-50 px-3 dark:bg-gray-800 dark:border-gray-600">$</span>
+                                <input type="number" placeholder="00.00" class="pl-6 rounded-l-none w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                                />
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-4">
+                            <label class="w-24">TVA 20% :</label>
+                            <div class="relative flex rounded-md w-[200px]">
+                                <span class="flex items-center justify-center rounded-l-md border border-r-0 bg-gray-100 px-3 dark:bg-gray-800 dark:border-gray-600">$</span>
+                                <input type="number" placeholder="00.00" class="pl-6 rounded-l-none w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                                    />
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-4">
+                            <label class="w-24">Total TTC :</label>
+                            <div class="relative flex rounded-md w-[200px]">
+                                <span class="flex items-center justify-center rounded-l-md border border-r-0 bg-gray-100 px-3 dark:bg-gray-800 dark:border-gray-600">$</span>
+                                <input type="number" placeholder="00.00" class="pl-6 rounded-l-none w-full p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="flex flex-col md:flex-row justify-end gap-2">
+            <button type="submit" class="px-4 py-2 rounded-md bg-[#052659] hover:bg-[#3483E3] text-white dark:bg-blue-800 dark:hover:bg-[#3483E3]">
+                Créer Facture
+            </button>
+            <button type="reset" class="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600">
+                Annuler
+            </button>
+        </div>
+    </form>
+</div>
