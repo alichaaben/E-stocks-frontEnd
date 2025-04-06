@@ -20,7 +20,7 @@ export class HomeComponent {
       radius: 200,
       angleOffset: 0,
       size: 'w-20 h-20',
-      path: 'assets/stocks.png'
+      path: '/admin/dashboard'
     },
     {
       icon: 'assets/facture-dachat.png',
@@ -29,7 +29,7 @@ export class HomeComponent {
       radius: 200,
       angleOffset: 144,
       size: 'w-20 h-20',
-      path: '/invoices'
+      path: '/admin/dashboard'
     },
     {
       icon: 'assets/fournisseur.png',
@@ -38,7 +38,7 @@ export class HomeComponent {
       radius: 300,
       angleOffset: 72,
       size: 'w-24 h-24',
-      path: '/debt-management'
+      path: '/admin/dashboard'
     },
     {
       icon: 'assets/porte-monnaie.png',
@@ -47,7 +47,7 @@ export class HomeComponent {
       radius: 300,
       angleOffset: 216,
       size: 'w-24 h-24',
-      path: '/suppliers'
+      path: '/admin/dashboard'
     },
     {
       icon: 'assets/la-dette-a-long-terme.png ',
@@ -56,7 +56,7 @@ export class HomeComponent {
       radius: 300,
       angleOffset: 288,
       size: 'w-24 h-24',
-      path: '/finance-dashboard'
+      path: '/admin/dashboard'
     }
   ];
 

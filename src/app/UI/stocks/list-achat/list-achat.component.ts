@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-list-stock-taken-out',
-  templateUrl: './list-stock-taken-out.component.html',
-  styleUrl: './list-stock-taken-out.component.css'
+  selector: 'app-list-achat',
+  templateUrl: './list-achat.component.html',
+  styleUrl: './list-achat.component.css'
 })
-export class ListStockTakenOutComponent {
+export class ListAchatComponent {
   Math = Math;
 
 
@@ -51,5 +51,4 @@ export class ListStockTakenOutComponent {
   get totalPages(): number {
     return Math.ceil(this.stocksSorties.length / this.itemsPerPage);
   }
-
 }

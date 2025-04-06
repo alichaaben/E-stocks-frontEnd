@@ -1,0 +1,80 @@
+<!-- sale.component.html -->
+<div class="p-8 bg-white shadow-lg rounded-2xl border border-gray-200 dark:bg-[#222b45] dark:border-gray-600">
+    <form [formGroup]="saleForm" class="space-y-7">
+        <h3 class="text-2xl font-semibold text-center py-3 bg-[#052659] text-white rounded-lg dark:bg-[#151a30]">
+            Vente Multi-Produits
+        </h3>
+
+        <button type="button" (click)="addItem()"
+            class="px-4 py-2 rounded-md bg-[#052659] hover:bg-[#3483E3] text-white dark:bg-blue-800 dark:hover:bg-[#3483E3] mb-4">
+            + Ajouter Produit
+        </button>
+
+        <div class="overflow-x-auto">
+            <div class="border border-gray-200 dark:border-gray-600 rounded-xl overflow-hidden">
+                <table class="min-w-full">
+                    <thead>
+                        <tr class="bg-gray-100 dark:bg-gray-700">
+                            <th class="px-4 py-2 border-b border-gray-200 dark:border-gray-600">Produit</th>
+                            <th class="px-4 py-2 border-b border-gray-200 dark:border-gray-600">Prix Unitaire (DT)</th>
+                            <th class="px-4 py-2 border-b border-gray-200 dark:border-gray-600">Quantité</th>
+                            <th class="px-4 py-2 border-b border-gray-200 dark:border-gray-600">Total (DT)</th>
+                            <th class="px-4 py-2 border-b border-gray-200 dark:border-gray-600">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody formArrayName="items">
+                        <tr *ngFor="let item of items.controls; let i = index" [formGroupName]="i"
+                            class="border-b border-gray-200 dark:border-gray-600 last:border-b-0">
+                            <td class="px-4 py-2">
+                                <select formControlName="product"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600">
+                                    <option value="" disabled selected>Choisir un produit</option>
+                                    <option *ngFor="let product of products" [value]="product.name">{{product.name}}
+                                    </option>
+                                </select>
+                                <div *ngIf="items.at(i).get('product')?.touched && items.at(i).get('product')?.invalid"
+                                    class="text-sm text-red-600 mt-1">Produit requis.
+                                </div>
+                            </td>
+                            <td class="px-4 py-2">
+                                <input type="number" formControlName="unitPrice" step="0.001" readonly
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600" />
+                            </td>
+                            <td class="px-4 py-2">
+                                <input type="number" formControlName="quantity" min="1"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600" />
+                                <div *ngIf="items.at(i).get('quantity')?.touched && items.at(i).get('quantity')?.invalid"
+                                    class="text-sm text-red-600 mt-1">Quantité doit être au moins 1.
+                                </div>
+                            </td>
+                            <td class="px-4 py-2">
+                                <input type="number" formControlName="total" step="0.001" readonly
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-yellow-500 dark:bg-[#151a30] dark:border-gray-600" />
+                            </td>
+                            <td class="px-4 py-2 text-center">
+                                <button type="button" (click)="removeItem(i)"
+                                    class="px-4 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white">
+                                    X
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="text-right text-xl font-bold">
+            Total général : 000DT
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="flex flex-col md:flex-row justify-end gap-2">
+            <button type="submit" class="px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white">
+                Valider la vente
+            </button>
+            <button type="reset" class="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600">
+                Annuler
+            </button>
+        </div>
+    </form>
+</div>

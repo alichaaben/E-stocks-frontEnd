@@ -20,7 +20,6 @@
                         <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Entrées</th>
                         <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Sorties</th>
                         <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Stock final</th>
-                        <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">CUMP</th>
                         <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Valeur</th>
                         <th class="px-6 py-3 text-sm font-medium text-white dark:text-gray-300 uppercase tracking-wider">Statue</th>
                     </tr>
@@ -37,7 +36,6 @@
                         <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ inventaire.Entrees}}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ inventaire.Sorties }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ inventaire.StockFinal }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ inventaire.cump}}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-base text-gray-900 dark:text-gray-200">{{ inventaire.Valeur }}</td>
                         <td class="p-3  rounded-full  px-6 py-1 inline-block m-4 font-medium text-sm text-white"  [ngClass]="{
                                     'bg-green-600': inventaire.Statut === 'Normal',

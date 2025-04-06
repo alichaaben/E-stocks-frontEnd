@@ -19,21 +19,54 @@
                             <span class="text" [class.tooltip]="isSidebarActive">Dashboard</span>
                         </a>
                     </li>
+
                     <li [class.active]="activeMenuItem === 1" (click)="toggleMenuItem(1, $event)">
-                        <a routerLink="ro-systems">
-                            <i class="ph ph-codesandbox-logo text-lg"></i>
-                            <span class="text" [class.tooltip]="isSidebarActive">System</span>
+                        <a>
+                            <i class="ph ph-storefront text-xl"></i>
+                            <span class="text" [class.tooltip]="isSidebarActive">Stocks</span>
+                            <i class="arrow ph-bold ph-caret-down"></i>
                         </a>
+                        <ul class="sub-menu dark:bg-[#222b45] bg-[#031f4a]"
+                            [style.display]="activeMenuItem === 1 ? 'block' : 'none'"
+                            (mouseenter)="onSubMenuMouseEnter()" (mouseleave)="onSubMenuMouseLeave()">
+                            <li>
+                                <a routerLink="stocks">
+                                    <span class="text" [class.tooltip]="isSidebarActive">Liste Stocks</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="ventes">
+                                    <span class="text" [class.tooltip]="isSidebarActive">Ventes</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="achats">
+                                    <span class="text" [class.tooltip]="isSidebarActive">Achats</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="inventory">
+                                    <span class="text" [class.tooltip]="isSidebarActive">Inventaires</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li [class.active]="activeMenuItem === 2" (click)="toggleMenuItem(2, $event)">
+                        <a routerLink="list">
+                            <i class="ph ph-codesandbox-logo text-lg"></i>
+                            <span class="text" [class.tooltip]="isSidebarActive">Facturations</span>
+                        </a>
+                    </li>
+
+                    <!-- <li [class.active]="activeMenuItem === 5" (click)="toggleMenuItem(2, $event)">
                         <a>
                             <i class="icon ph-bold ph-user"></i>
                             <span class="text" [class.tooltip]="isSidebarActive">Users</span>
                             <i class="arrow ph-bold ph-caret-down"></i>
                         </a>
                         <ul class="sub-menu dark:bg-[#222b45] bg-[#031f4a]"
-                            [style.display]="activeMenuItem === 2 ? 'block' : 'none'"
+                            [style.display]="activeMenuItem === 5 ? 'block' : 'none'"
                             (mouseenter)="onSubMenuMouseEnter()" (mouseleave)="onSubMenuMouseLeave()">
                             <li>
                                 <a routerLink="users">
@@ -46,39 +79,76 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <li [class.active]="activeMenuItem === 3" (click)="toggleMenuItem(3, $event)">
-                        <a routerLink="billings">
-                            <i class="icon ph-bold ph-file-text"></i>
-                            <span class="text" [class.tooltip]="isSidebarActive">Billings</span>
+                        <a>
+                            <i class="ph ph-storefront text-xl"></i>
+                            <span class="text" [class.tooltip]="isSidebarActive">Recouvrements</span>
+                            <i class="arrow ph-bold ph-caret-down"></i>
                         </a>
+                        <ul class="sub-menu dark:bg-[#222b45] bg-[#031f4a]"
+                            [style.display]="activeMenuItem === 3 ? 'block' : 'none'"
+                            (mouseenter)="onSubMenuMouseEnter()" (mouseleave)="onSubMenuMouseLeave()">
+                            <li>
+                                <a routerLink="creances">
+                                    <span class="text" [class.tooltip]="isSidebarActive">Creances</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="reglements">
+                                    <span class="text" [class.tooltip]="isSidebarActive">Reglemets</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li [class.active]="activeMenuItem === 4" (click)="toggleMenuItem(4, $event)">
                         <a>
                             <i class="ph ph-storefront text-xl"></i>
-                            <span class="text" [class.tooltip]="isSidebarActive">Components</span>
+                            <span class="text" [class.tooltip]="isSidebarActive">Fournisseurs</span>
                             <i class="arrow ph-bold ph-caret-down"></i>
                         </a>
                         <ul class="sub-menu dark:bg-[#222b45] bg-[#031f4a]"
                             [style.display]="activeMenuItem === 4 ? 'block' : 'none'"
                             (mouseenter)="onSubMenuMouseEnter()" (mouseleave)="onSubMenuMouseLeave()">
                             <li>
-                                <a routerLink="materials">
-                                    <span class="text" [class.tooltip]="isSidebarActive">Lists</span>
+                                <a routerLink="dettes">
+                                    <span class="text" [class.tooltip]="isSidebarActive">dettes</span>
                                 </a>
                             </li>
                             <li>
-                                <a routerLink="stores">
-                                    <span class="text" [class.tooltip]="isSidebarActive">Stores</span>
+                                <a routerLink="reglement-dette">
+                                    <span class="text" [class.tooltip]="isSidebarActive">Reglemets</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
+
+                    <!-- <li [class.active]="activeMenuItem === 5" (click)="toggleMenuItem(4, $event)">
+                        <a>
+                            <i class="ph ph-storefront text-xl"></i>
+                            <span class="text" [class.tooltip]="isSidebarActive">caisse</span>
+                            <i class="arrow ph-bold ph-caret-down"></i>
+                        </a>
+                        <ul class="sub-menu dark:bg-[#222b45] bg-[#031f4a]"
+                            [style.display]="activeMenuItem === 5 ? 'block' : 'none'"
+                            (mouseenter)="onSubMenuMouseEnter()" (mouseleave)="onSubMenuMouseLeave()">
+                            <li>
+                                <a routerLink="materials">
+                                    <span class="text" [class.tooltip]="isSidebarActive">Budgets</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="stores">
+                                    <span class="text" [class.tooltip]="isSidebarActive">Transactions</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> -->
                 </ul>
             </div>
-
+<!----------------------------------------------------------------------------------------->
             <div class="menu">
                 <p class="title">Settings</p>
                 <ul>
@@ -115,7 +185,7 @@
                 <img src="assets/Ali2.png" alt="" />
             </div>
             <div class="user-details">
-                <p class="title">web developer</p>
+                <p class="title">Admin</p>
                 <p class="name">Ali Chaabane</p>
             </div>
         </div>

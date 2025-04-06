@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoSystemComponent } from './ro-system.component';
+import { VenteComponent } from './vente.component';
 
-describe('RoSystemComponent', () => {
-  let component: RoSystemComponent;
-  let fixture: ComponentFixture<RoSystemComponent>;
+describe('VenteComponent', () => {
+  let component: VenteComponent;
+  let fixture: ComponentFixture<VenteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RoSystemComponent]
+      declarations: [VenteComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(RoSystemComponent);
+    fixture = TestBed.createComponent(VenteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

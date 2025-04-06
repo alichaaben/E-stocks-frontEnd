@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { LoginComponent } from './UI/login/login.component';
-import { RoSystemComponent } from './UI/ro-system/ro-system.component';
 import { SettingComponent } from './UI/setting/setting.component';
 import { ListUsersComponent } from './UI/users/list-users/list-users.component';
 import { UpdateUsersComponent } from './UI/users/update-users/update-users.component';
@@ -21,10 +20,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ListStockComponent } from './UI/stocks/list-stock/list-stock.component';
 import { CreateStockComponent } from './UI/stocks/create-stock/create-stock.component';
 import { UpdateStockComponent } from './UI/stocks/update-stock/update-stock.component';
-import { ListStockEntriesComponent } from './UI/stocks/list-stock-entries/list-stock-entries.component';
-import { ListStockTakenOutComponent } from './UI/stocks/list-stock-taken-out/list-stock-taken-out.component';
 import { ListInventoryComponent } from './UI/stocks/list-inventory/list-inventory.component';
-import { OperationStockComponent } from './UI/stocks/operation-stock/operation-stock.component';
 import { ListCreancesComponent } from './UI/recouvrement/list-creances/list-creances.component';
 import { CreateCreanceComponent } from './UI/recouvrement/create-creance/create-creance.component';
 import { CreateReglementComponent } from './UI/recouvrement/create-reglement/create-reglement.component';
@@ -48,13 +44,16 @@ import { DashboardFacturesComponent } from './UI/KPI/dashboard-factures/dashboar
 import { ListCategoriesComponent } from './UI/categories/list-categories/list-categories.component';
 import { CreateCategoriesComponent } from './UI/categories/create-categories/create-categories.component';
 import { UpdateCategoriesComponent } from './UI/categories/update-categories/update-categories.component';
+import { VenteComponent } from './UI/stocks/vente/vente.component';
+import { AchatComponent } from './UI/stocks/achat/achat.component';
+import { ListVenteComponent } from './UI/stocks/list-vente/list-vente.component';
+import { ListAchatComponent } from './UI/stocks/list-achat/list-achat.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RoSystemComponent,
     SettingComponent,
     ListUsersComponent,
     UpdateUsersComponent,
@@ -66,10 +65,7 @@ import { UpdateCategoriesComponent } from './UI/categories/update-categories/upd
     ListStockComponent,
     CreateStockComponent,
     UpdateStockComponent,
-    ListStockEntriesComponent,
-    ListStockTakenOutComponent,
     ListInventoryComponent,
-    OperationStockComponent,
     ListCreancesComponent,
     CreateCreanceComponent,
     CreateReglementComponent,
@@ -93,6 +89,10 @@ import { UpdateCategoriesComponent } from './UI/categories/update-categories/upd
     ListCategoriesComponent,
     CreateCategoriesComponent,
     UpdateCategoriesComponent,
+    VenteComponent,
+    AchatComponent,
+    ListVenteComponent,
+    ListAchatComponent,
 
   ],
   imports: [

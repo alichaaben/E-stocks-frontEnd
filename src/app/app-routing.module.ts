@@ -10,15 +10,11 @@ import { UpdateRoleComponent } from './UI/roles/update-role/update-role.componen
 import { ListUsersComponent } from './UI/users/list-users/list-users.component';
 import { CreateUsersComponent } from './UI/users/create-users/create-users.component';
 import { UpdateUsersComponent } from './UI/users/update-users/update-users.component';
-import { RoSystemComponent } from './UI/ro-system/ro-system.component';
 import { ErrorPageComponent } from './UI/error-page/error-page.component';
 import { ListStockComponent } from './UI/stocks/list-stock/list-stock.component';
 import { CreateStockComponent } from './UI/stocks/create-stock/create-stock.component';
 import { UpdateStockComponent } from './UI/stocks/update-stock/update-stock.component';
 import { ListInventoryComponent } from './UI/stocks/list-inventory/list-inventory.component';
-import { OperationStockComponent } from './UI/stocks/operation-stock/operation-stock.component';
-import { ListStockEntriesComponent } from './UI/stocks/list-stock-entries/list-stock-entries.component';
-import { ListStockTakenOutComponent } from './UI/stocks/list-stock-taken-out/list-stock-taken-out.component';
 import { ListCreancesComponent } from './UI/recouvrement/list-creances/list-creances.component';
 import { CreateCreanceComponent } from './UI/recouvrement/create-creance/create-creance.component';
 import { ListReglementsComponent } from './UI/recouvrement/list-reglements/list-reglements.component';
@@ -38,9 +34,13 @@ import { DashboardStocksComponent } from './UI/KPI/dashboard-stocks/dashboard-st
 import { ListCategoriesComponent } from './UI/categories/list-categories/list-categories.component';
 import { CreateCategoriesComponent } from './UI/categories/create-categories/create-categories.component';
 import { UpdateCategoriesComponent } from './UI/categories/update-categories/update-categories.component';
+import { VenteComponent } from './UI/stocks/vente/vente.component';
+import { ListVenteComponent } from './UI/stocks/list-vente/list-vente.component';
+import { AchatComponent } from './UI/stocks/achat/achat.component';
+import { ListAchatComponent } from './UI/stocks/list-achat/list-achat.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
 
@@ -78,10 +78,17 @@ const routes: Routes = [
       { path: 'stocks', component: ListStockComponent },
       { path: 'stocks/create', component: CreateStockComponent },
       { path: 'stocks/update', component: UpdateStockComponent },
+      /*vente*/
+      { path: 'ventes', component: ListVenteComponent},
+      { path: 'ventes/create', component: VenteComponent},
+      /*achat*/
+      { path: 'achats', component: ListAchatComponent },
+      { path: 'achats/create', component: AchatComponent },
+    
+
       { path: 'inventory', component: ListInventoryComponent },
-      { path: 'operation', component: OperationStockComponent },
-      { path: 'entries-list', component: ListStockEntriesComponent },
-      { path: 'sorties-list', component: ListStockTakenOutComponent },
+      
+
 
       /*************** recouvrements *************** */
       { path: 'creances', component: ListCreancesComponent },
@@ -111,10 +118,6 @@ const routes: Routes = [
       { path: 'dashboard-dettes', component: ListComponent },
       { path: 'dashboard-ceances', component: ListComponent },
       { path: 'dashboard-finances', component: ListComponent },
-
-
-      /*************** Ro-Systems *************** */
-      { path: 'ro-systems', component: RoSystemComponent },
 
       /*************** Error Pages *************** */
       { path: 'error', component: ErrorPageComponent },
